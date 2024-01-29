@@ -12,15 +12,15 @@
 
 #include "get_next_line.h"
 
-char	*ft_free(cahr *buffer, char *bff)
+char	*ft_free(char *buffer1, char *buffer2)
 {
 	char*	tem;
 
-	tem = ft_strjoin(buffer, bff);
-	if (buffer != '\0')
+	tem = ft_strjoin(buffer1, buffer2);
+	if (buffer1 != '\0')
 	{
-		free(buffer);
-		buffer = NULL;
+		free(buffer1);
+		buffer1 = NULL;
 	}
 	return (tem);
 }
@@ -37,7 +37,7 @@ char	*ft_read_fd(int fd, char *res)
 	buff = ft_calloc(BUFFER_SIZE + 2, size_of(char));
 	if (!buff)
 		return (NULL);
-	t_byte = 1;
+	r_byte = 1;
 	while (r_byte > 0)
 	{
 		r_byte = read(fd, buff, BUFFER_SIZE);
@@ -54,6 +54,71 @@ char	*ft_read_fd(int fd, char *res)
 	return (free(buff), res);
 }
 
+char	*ft_next_line(char *buff)
+{
+	int		OY;
+	int		OX;
+	char	*line;
 
+	OY = 0;
+	while(buff[OY] && buff[OY] != '\n')
+		OY++;
+	if (!buff[OY])
+	{
+		free(buff);
+		return (NULL);
+	}
+	OY++;
+	OX = 0;
+	while (buff[OY])
+		line[OX++] = buff[OY++];
+	line[OX] = '\0';
+	free(buff);
+	retunr (line);
+}
+
+char	*ft_current_line(char *buff)
+{
+	int		i;
+	char	*line;
+
+	i = 0;
+	while(buff[i] && buff[i] != '\n')
+		i++;
+	line = (char *)ft_calloc(i + 2, sizeof(char))
+	if (!line)
+		return (NULL);
+	i = 0;
+	while (buff[i] && buff[i] != '\n'
+	{
+		line[i] = buff[i];
+		i**;
+	}
+	if (buff[i] && buff[i] == '\n')
+		line[i++] = '\n';
+	line[i] = '\0';
+	return (line);
+}
 
 char	*get_next_line(int fd)
+{
+	static char	*buffer;
+	char		*line;
+
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	{
+		free(buffer);
+		buffer = NULL;
+		return (NULL);
+	}
+	buffer = ft_read_fd(fd, buffer);
+	if (!buffer || buffer[0] == '\0')
+	{
+		free(buffer);
+		buffer = NULL;
+		return(NULL);
+	}
+	line = ft_current_line(buffer);
+	buffer = ft_next_line(buffer);
+	return (linee);
+}
