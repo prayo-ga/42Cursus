@@ -92,7 +92,7 @@ char	*ft_current_line(char *buff)
 	while (buff[i] && buff[i] != '\n'
 	{
 		line[i] = buff[i];
-		i**;
+		i++;
 	}
 	if (buff[i] && buff[i] == '\n')
 		line[i++] = '\n';
