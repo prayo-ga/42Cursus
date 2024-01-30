@@ -74,7 +74,7 @@ char	*ft_next_line(char *buff)
 		line[OX++] = buff[OY++];
 	line[OX] = '\0';
 	free(buff);
-	retunr (line);
+	return (line);
 }
 
 char	*ft_current_line(char *buff)
@@ -120,5 +120,5 @@ char	*get_next_line(int fd)
 	}
 	line = ft_current_line(buffer);
 	buffer = ft_next_line(buffer);
-	return (linee);
+	return (line);
 }
