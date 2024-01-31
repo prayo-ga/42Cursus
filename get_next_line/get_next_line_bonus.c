@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prayo-ga <prayo-ga@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: prayo-ga <prayo-ga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 14:50:22 by prayo-ga          #+#    #+#             */
-/*   Updated: 2023/12/05 14:50:47 by prayo-ga         ###   ########.fr       */
+/*   Created: 2024/01/31 16:09:11 by prayo-ga          #+#    #+#             */
+/*   Updated: 2024/01/31 16:09:11 by prayo-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonuss.h"
 
 char	*ft_free(char *buffer1, char *buffer2)
 {
@@ -74,7 +74,7 @@ char	*ft_next_line(char *buff)
 		line[OX++] = buff[OY++];
 	line[OX] = '\0';
 	free(buff);
-	return (line);
+	retunr (line);
 }
 
 char	*ft_current_line(char *buff)
@@ -120,5 +120,5 @@ char	*get_next_line(int fd)
 	}
 	line = ft_current_line(buffer);
 	buffer = ft_next_line(buffer);
-	return (line);
+	return (linee);
 }
