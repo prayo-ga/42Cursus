@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prayo-ga <prayo-ga@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: prayo-ga <prayo-ga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 14:50:22 by prayo-ga          #+#    #+#             */
-/*   Updated: 2023/12/05 14:50:47 by prayo-ga         ###   ########.fr       */
+/*   Created: 2024/01/31 17:38:05 by prayo-ga          #+#    #+#             */
+/*   Updated: 2024/01/31 17:38:05 by prayo-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 char	*ft_free(char *buffer1, char *buffer2)
 {
-	char*	tem;
+	char	*tem;
 
 	tem = ft_strjoin(buffer1, buffer2);
-	if (buffer1 != '\0')
+	if (buffer1)
 	{
 		free(buffer1);
 		buffer1 = NULL;
@@ -31,48 +31,54 @@ char	*ft_read_fd(int fd, char *res)
 	int		r_byte;
 
 	if (!res)
-		res = ft_calloc(1,1);
+		res = ft_calloc(1, 1);
 	if (!res)
 		return (NULL);
-	buff = ft_calloc(BUFFER_SIZE + 2, size_of(char));
+	buff = ft_calloc(BUFFER_SIZE + 2, sizeof(char));
 	if (!buff)
 		return (NULL);
 	r_byte = 1;
 	while (r_byte > 0)
 	{
 		r_byte = read(fd, buff, BUFFER_SIZE);
-		if (r_byte = 1)
+		if (r_byte == -1)
 		{
-			free (buff);
+			free(buff);
 			return (buff = NULL, NULL);
 		}
 		buff[r_byte] = '\0';
 		res = ft_free(res, buff);
 		if (ft_strchr(buff, '\n'))
-			break;
+			break ;
 	}
 	return (free(buff), res);
 }
 
 char	*ft_next_line(char *buff)
 {
-	int		OY;
-	int		OX;
+	int		ox;
+	int		oy;
 	char	*line;
 
-	OY = 0;
-	while(buff[OY] && buff[OY] != '\n')
-		OY++;
-	if (!buff[OY])
+	oy = 0;
+	while (buff[oy] && buff[oy] != '\n')
+		oy++;
+	if (!buff[oy])
 	{
 		free(buff);
 		return (NULL);
 	}
-	OY++;
-	OX = 0;
-	while (buff[OY])
-		line[OX++] = buff[OY++];
-	line[OX] = '\0';
+	line = ft_calloc((ft_strlen(buff) - oy + 2), sizeof(char));
+	if (!line)
+	{
+		free(buff);
+		return (NULL);
+	}
+	oy++;
+	ox = 0;
+	while (buff[oy])
+		line[ox++] = buff[oy++];
+	line[ox] = '\0';
 	free(buff);
 	return (line);
 }
@@ -83,16 +89,16 @@ char	*ft_current_line(char *buff)
 	char	*line;
 
 	i = 0;
-	while(buff[i] && buff[i] != '\n')
+	while (buff[i] && buff[i] != '\n')
 		i++;
-	line = (char *)ft_calloc(i + 2, sizeof(char))
+	line = (char *)ft_calloc(i + 2, sizeof(char));
 	if (!line)
 		return (NULL);
 	i = 0;
-	while (buff[i] && buff[i] != '\n'
+	while (buff[i] && buff[i] != '\n')
 	{
 		line[i] = buff[i];
-		i**;
+		i++;
 	}
 	if (buff[i] && buff[i] == '\n')
 		line[i++] = '\n';
@@ -116,7 +122,7 @@ char	*get_next_line(int fd)
 	{
 		free(buffer);
 		buffer = NULL;
-		return(NULL);
+		return (NULL);
 	}
 	line = ft_current_line(buffer);
 	buffer = ft_next_line(buffer);

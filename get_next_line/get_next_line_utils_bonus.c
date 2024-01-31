@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: prayo-ga <prayo-ga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 16:08:16 by prayo-ga          #+#    #+#             */
-/*   Updated: 2024/01/31 16:08:16 by prayo-ga         ###   ########.fr       */
+/*   Created: 2024/01/31 17:51:48 by prayo-ga          #+#    #+#             */
+/*   Updated: 2024/01/31 17:52:21 by prayo-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,10 @@ void	*ft_bzero(void *s, size_t n)
 	p = (unsigned char *) s;
 	while (i < n)
 	{
-		p [i] = ;
+		p[i] = 0;
 		i++;
 	}
+	return (s);
 }
 
 char	*ft_strjoin(const char *s1, const char *s2)
