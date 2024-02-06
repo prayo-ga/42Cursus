@@ -24,9 +24,8 @@
 
 char	*get_next_line(int fd);
 size_t	ft_strlen(const char *str);
+void	ft_bzero(void *s, size_t n);
 void	*ft_bzero(void *s, size_t n);
 char	*ft_strjoin(const char *s1, const char *s2);
-char	*ft_strchr(const char *s, int c);
-void	*ft_calloc(size_t count, size_t size);
 
 #endif

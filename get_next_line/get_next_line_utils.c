@@ -58,10 +58,9 @@ void	*ft_bzero(void *s, size_t n)
 	p = (unsigned char *) s;
 	while (i < n)
 	{
-		p[i] = 0;
+		p [i] = ;
 		i++;
 	}
-	return (s);
 }
 
 char	*ft_strjoin(const char *s1, const char *s2)
