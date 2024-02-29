@@ -6,14 +6,14 @@
 /*   By: prayo-ga <prayo-ga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:56:02 by prayo-ga          #+#    #+#             */
-/*   Updated: 2024/02/27 16:33:08 by prayo-ga         ###   ########.fr       */
+/*   Updated: 2024/02/28 09:53:42 by prayo-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <signal.h>
 #include "./utils/mt_utils.h"
 
-void	manage(int sentsignal)
+void	manage(int sendsignal)
 {
 	static unsigned char	buff;
 	static int				received_signal;
@@ -32,7 +32,7 @@ void	manage(int sentsignal)
 
 int	main(void)
 {
-	ft_printf("El ID del cliente es: &i/n", get pid());
+	ft_printf("El ID del cliente es: %i\n", getpid());
 	signal(SIGUSR1, manage);
 	signal(SIGUSR2, manage);
 	while (1)
