@@ -5,10 +5,11 @@ CC = cc
 FLAGS = -Wall -Werror -Wextra
 RM = rm -rf
 
-SRC_S = server.c 
+SRC_S = server.c
 OBJ_S = $(SRC_S:.c=.o)
 SRC_C = client.c
 OBJ_C = $(SRC_C:.c=.o)
+
 
 %.o: %.c
 		@$(CC) $(FLAGS) -c $< -o $@
@@ -24,7 +25,7 @@ libft:
 		@ make -C libft/
 
 clean:
-		@ $(RM) $(OBJ_S) $(OBJ_C)
+		@ $(RM) $(OBJ_S) $(OBJ_C) 
 		@ make -C libft/ clean
 
 fclean: clean

@@ -6,12 +6,13 @@
 /*   By: prayo-ga <prayo-ga@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:56:02 by prayo-ga          #+#    #+#             */
-/*   Updated: 2024/02/28 09:53:42 by prayo-ga         ###   ########.fr       */
+/*   Updated: 2024/02/29 19:53:46 by prayo-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <signal.h>
-#include "./utils/mt_utils.h"
+#include "./libft/libft.h"
+#include "./libft/ft_printf.h"
 
 void	manage(int sendsignal)
 {
