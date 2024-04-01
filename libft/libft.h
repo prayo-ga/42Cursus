@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prayo-ga <prayo-ga@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: prayo-ga <prayo-ga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:24:27 by prayo-ga          #+#    #+#             */
-/*   Updated: 2023/11/15 19:08:52 by prayo-ga         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:42:44 by prayo-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stddef.h>
 # include <stdlib.h>
+# include <stdarg.h>
 
 int		ft_isalnum(int c);
 int		ft_isascii(int c);
@@ -31,7 +32,7 @@ size_t	ft_strlcpy(char *dst, char *src, size_t dstsize);
 size_t	ft_strlcat(char *dst, char *src, size_t dstsize);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
-char	*ft_strchr(const char*s, int c);
+char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	*ft_memchr(const void *s, int c, size_t n);
@@ -51,5 +52,14 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
 void	ft_striteri(char *s, void (*f) (unsigned int, char*));
 char	*ft_strmapi(char const *s, char (*f) (unsigned int, char));
+int		ft_printchar(char c);
+int		ft_printstr(char *str);
+int		ft_printdec(int num);
+int		ft_printunsigned(unsigned int num);
+int		ft_printhex(unsigned long long num, char c);
+int		ft_printptr(unsigned long long ptr);
+int		ft_printf(const char *format, ...);
+int		ft_countnum(long long num);
+void	ft_putnbr(int num);
 
 #endif
