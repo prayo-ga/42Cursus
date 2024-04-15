@@ -6,7 +6,7 @@
 /*   By: prayo-ga <prayo-ga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 12:36:12 by prayo-ga          #+#    #+#             */
-/*   Updated: 2024/04/01 15:26:54 by prayo-ga         ###   ########.fr       */
+/*   Updated: 2024/04/09 12:32:25 by prayo-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,21 @@
 # define WALL '1'
 # define GROUND '0'
 
-# define ERROR_PARAMS "Error: Se necesitan 2 paramaetros.\n"
-# define ERROR_EXTENSION_MAP "Error: Se necesita que el mapa sea '.ber'!\n"
-# define ERROR_EMPTY_MAP "Error: El mapa está vacio!\n"
-# define ERROR_MAP_FORM "Error: El mapa no corresponde con las dimensiones necesarias.\n"
-# define ERROR_COMPONENTS_WRONG "Error: Los conmponentes no son los que están estipulados.\n"
-# define ERROR_NO_WALLS "Error: No hay paredes alrededor del mapa.\n"
-# define ERROR_MINIMUN_COMPONENTS "Error: No hay los suficientes componentes creados para el mapa.\n"
-# define ERROR_INVALID_PATH "Error: El camino estipulado no es valido.\n"
+# define ERROR_PARAMS "Error: You need 2 paramas.\n"
+# define ERROR_EXTENSION_MAP "Error: your map must be '.ber'!\n"
+# define ERROR_EMPTY_MAP "Error: The map is empty!\n"
+# define ERROR_MAP_FORM "Error: The map doesn't have the dimentions needed.\n"
+# define ERROR_COMPONENTS_WRONG "Error: The components are not the needed ones.\n"
+# define ERROR_NO_WALLS "Error: There are no walls around the map.\n"
+# define ERROR_MINIMUN_COMPONENTS "Error: THere are not enough components created for the map.\n"
+# define ERROR_INVALID_PATH "Error: The path is not valid.\n"
 
 # define BUFFER_SIZE 10000
 # define FALSE 1
 # define TRUE 0
 # define MOVE 32
 
-typedef struct struct_texture 
+typedef struct s_texture 
 {
 	mlx_texture_t	*ground;
 	mlx_texture_t	*wall;
@@ -52,7 +52,7 @@ typedef struct struct_texture
 	mlx_texture_t	*close_chest;
 }	t_textures;
 
-typedef struct struct_images
+typedef struct s_images
 {
 	mlx_image_t	*ground;
 	mlx_image_t	*wall;
@@ -62,10 +62,10 @@ typedef struct struct_images
 	mlx_image_t	*close_chest;
 }	t_images;
 
-typedef struct struct_game
+typedef struct s_game
 {
-	struct struct_texture	*textures;
-	struct struct_images	*images;
+	struct s_texture	*textures;
+	struct s_images	*images;
 	mlx_t					*mlx;
 	char					**map;
 	char					**map_2;
@@ -78,7 +78,7 @@ typedef struct struct_game
 
 int		init_game(t_game *game);
 int		check_file_extension(char const *file_name);
-char	**read_map(char *map);
+char	**read_map(char *map_file);
 void	draw_map(t_game *game, t_images *images);
 int		check_map(char **map);
 int		check_empty_map(char **map);
@@ -91,7 +91,7 @@ int		*first_position_player(char  **map);
 void	flood_map(t_game *game, int ox, int oy);
 int		check_flood_map(char **map);
 int		total_bones(t_game *game);
-void	free_map(t_game *game);
+void	free_map(char **map);
 int		check_minimun_components(char **map);
 void	get_textures(t_game *game);
 void	get_images(t_game *game);

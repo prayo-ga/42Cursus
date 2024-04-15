@@ -6,7 +6,7 @@
 /*   By: prayo-ga <prayo-ga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 15:22:43 by prayo-ga          #+#    #+#             */
-/*   Updated: 2024/04/01 15:55:20 by prayo-ga         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:04:12 by prayo-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int init_game(t_game *game)
     get_textures(game);
     get_images(game);
     draw_map(game, game->images);
-    mlx_key_hook(game->mlx, &ft_key_hook, game);
+    mlx_key_hook(game->mlx, &ft_key_hook, game); //no ponemos los parentesis porque en si la funcion pasa otros parametros y & sirve para acceder a la direccion de memoria donde estan los parametros.
     mlx_loop(game->mlx);
     mlx_terminate(game->mlx);
     free_map(game->map);
