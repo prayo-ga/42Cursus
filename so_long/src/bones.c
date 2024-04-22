@@ -6,7 +6,7 @@
 /*   By: prayo-ga <prayo-ga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 15:57:20 by prayo-ga          #+#    #+#             */
-/*   Updated: 2024/04/15 13:11:43 by prayo-ga         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:09:37 by prayo-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,18 @@ void	collect_bones(t_game *game)
 	counter = game->bone_number;
 	while (len < counter)
 	{
-		if (((game->images->bone->instances[len].y / 32
-				== game->images->character->instances->y / 32)
-				&& (game->images->bone->instances[len].x / 32
-				== game->images->character->instances->x / 32))
-				&& game->images->bone->instances[len].enabled == true) // chekear la posicion del hueso y si se cumple las condiciones de que el jugador este en la misma posicion y si esta habilitada
+		if (((game->images->bone->instances[len].y
+					/ 32 == game->images->character->instances->y / 32)
+				&& (game->images->bone->instances[len].x
+					/ 32 == game->images->character->instances->x / 32))
+			&& game->images->bone->instances[len].enabled == true)
 		{
-			counter--; //Le restamos para que en el total de huesos estipulados haya uno menos
-			game->images->bone->instances[len].enabled = false; //Escondemos el colleccionable
-			game->map[game->images->character->instances->y / 32]
-			[game->images->character->instances->x / 32] = GROUND; //Quitamos el hueso de su posicion
-			game->bone_counter++; //Para qeu se sume en el contador para decir que has ganado un punto.
-			if (game->bone_counter == game->bone_number) //Es para qeu el perro huya. El cofre se abre.
+			counter--;
+			game->images->bone->instances[len].enabled = false;
+			game->map[game->images->character->instances->y
+				/ 32][game->images->character->instances->x / 32] = GROUND;
+			game->bone_counter++;
+			if (game->bone_counter == game->bone_number)
 				game->images->close_chest->instances->enabled = false;
 			return ;
 		}
@@ -65,10 +65,10 @@ void	collect_bones(t_game *game)
 void	ft_exit_game(t_game *game)
 {
 	if (game->images->close_chest->instances->enabled == false
-			&& game->images->close_chest->instances->x / 32
-			== game->images->character->instances->x / 32
-			&& game->images->close_chest->instances->y / 32
-			== game->images->character->instances->y / 32)
+		&& game->images->close_chest->instances->x
+		/ 32 == game->images->character->instances->x / 32
+		&& game->images->close_chest->instances->y
+		/ 32 == game->images->character->instances->y / 32)
 	{
 		ft_printf("You won the game with %i movements", game->move_counter);
 		mlx_close_window(game->mlx);

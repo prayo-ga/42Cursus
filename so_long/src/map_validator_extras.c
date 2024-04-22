@@ -6,7 +6,7 @@
 /*   By: prayo-ga <prayo-ga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 15:58:15 by prayo-ga          #+#    #+#             */
-/*   Updated: 2024/04/09 13:23:42 by prayo-ga         ###   ########.fr       */
+/*   Updated: 2024/04/22 11:56:06 by prayo-ga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,40 @@
 
 int	check_minimun_components(char **map)
 {
-	int first;
-	int second;
-	int num_exit;
-	int num_bones;
+	int	fst;
+	int	snd;
+	int	num_exit;
+	int	num_bones;
 
-	first = 0;
+	fst = 0;
 	num_bones = 0;
 	num_exit = 0;
-	while (map[first])
+	while (map[fst])
 	{
-		second = 0;
-		while (map[first][second])
+		snd = 0;
+		while (map[fst][snd])
 		{
-			if (map[first][second] == EXIT_MAP || map[first][second] == START_PLAYER)//si exsiste una salida el maà o hay una entrada:
-				num_exit++; //le sumamos al contador
-			if (map[first][second] == BONE)
+			if (map[fst][snd] == EXIT_MAP || map[fst][snd] == START_PLAYER)
+				num_exit++;
+			if (map[fst][snd] == BONE)
 				num_bones++;
-			second++;
+			snd++;
 		}
-		first++;
+		fst++;
 	}
-	if (num_exit != 2 || num_bones < 1) //Porque la salida se considera dos ya que el uno es la entrada
+	if (num_exit != 2 || num_bones < 1)
 		return (FALSE);
 	else
 		return (TRUE);
 }
 
-int	*first_position_player(char  **map)
+int	*first_position_player(char **map)
 {
-	int ox;
-	int oy;
-	int *pos;
+	int	ox;
+	int	oy;
+	int	*pos;
 
-	pos = (int *)ft_calloc(2, sizeof(int)); //Es dos porque solo tenemos dos coordenadas.
+	pos = (int *)ft_calloc(2, sizeof(int));
 	oy = 0;
 	while (map[oy])
 	{
@@ -66,17 +66,17 @@ int	*first_position_player(char  **map)
 	return (pos);
 }
 
-void	flood_map(t_game *game, int ox, int oy) //determina los distintos aspectos del mapa, como sulo, pared...
+void	flood_map(t_game *game, int ox, int oy)
 {
-	if (!(ox < 0 || oy < 0 || ox >= game->width || oy > game->height
-			|| game->map_2[oy][ox] == '1' || game->map_2[oy][ox] == 'X')) //Comprobación del mapa y de las coordenadas, la X son las casillas visitables.
-			{
-				game->map_2[oy][ox] = 'X'; //SI se cumple la condición de antes vamos a marcar las casillas visitables
-				flood_map(game, ox + 1, oy);// arriba
-				flood_map(game, ox - 1, oy);//abajo
-				flood_map(game, ox, oy + 1);// derecha
-				flood_map(game, ox, oy - 1);//izquierda
-			}
+	if (ox < 0 || oy < 0 || ox >= game->width || oy >= game->height)
+		return ;
+	if (game->map_2[oy][ox] == '1' || game->map_2[oy][ox] == 'X')
+		return ;
+	game->map_2[oy][ox] = 'X';
+	flood_map(game, ox + 1, oy);
+	flood_map(game, ox - 1, oy);
+	flood_map(game, ox, oy + 1);
+	flood_map(game, ox, oy - 1);
 }
 
 int	check_flood_map(char **map)
@@ -92,7 +92,7 @@ int	check_flood_map(char **map)
 		{
 			if (!(map[first][second] == WALL || map[first][second] == GROUND
 					|| map[first][second] == 'X'))
-					return (FALSE);
+				return (FALSE);
 			second++;
 		}
 		first++;
@@ -103,7 +103,7 @@ int	check_flood_map(char **map)
 int	check_correct_path(t_game *game, char *fd)
 {
 	int	*position;
-	
+
 	game->map_2 = read_map(fd);
 	position = first_position_player(game->map_2);
 	flood_map(game, position[0], position[1]);
@@ -117,4 +117,3 @@ int	check_correct_path(t_game *game, char *fd)
 	free_map(game->map_2);
 	return (TRUE);
 }
-

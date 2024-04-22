@@ -1,11 +1,17 @@
 NAME	:= so_long
-CFLAGS	:= -Wextra -Wall -Werror -Wunreachable-code -Ofast
+CFLAGS	:= -Wextra -Wall -Werror
 LIBMLX	:= ./lib/mlx42
 LIBFT	:= ./lib/libft
 
 HEADERS	:= -I ./include -I $(LIBMLX)/include -I $(LIBFT)/libft.h
 LIBS	:= $(LIBMLX)/build/libmlx42.a $(LIBFT)/libft.a -ldl -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -pthread -lm 
-SRCS	:= $(shell find ./src -iname "*.c")
+SRCS	:= src/bones.c \
+			src/images.c \
+			src/main.c \
+			src/map_validator_extras.c \
+			src/map_validator.c \
+			src/map.c \
+			src/move.c 
 OBJS	:= ${SRCS:.c=.o}
 
 all: libmlx libft $(NAME)
@@ -25,12 +31,14 @@ $(NAME): $(OBJS)
 clean:
 	@make clean -C $(LIBFT)
 	@rm -rf $(OBJS)
-	@rm -rf $(LIBMLX)/build
+	@find $(LIBMLX)/build -type f ! -name '*.a' -delete
+	@find $(LIBMLX)/build -type d -empty -delete
 	@printf "$(NAME) Cleaned Successfully!\n"
 
 fclean: clean
 		@rm -rf $(LIBFT)/libft.a
 		@rm -rf $(NAME)
+		@rm -rf $(LIBMLX)/build
 
 re: clean all
 
